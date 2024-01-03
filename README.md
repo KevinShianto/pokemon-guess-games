@@ -19,8 +19,8 @@ npm start dev
 ## Technologies used
 
 - [DaisyUI](https://daisyui.com/docs/install/)
-- [Tanstack Query](https://tanstack.com/query/latest/docs/react/overview)
 - [PokeAPI V2](https://pokeapi.co/docs/v2)
+- [Pokenode-ts](https://pokenode-ts.vercel.app/guides/getting-started)
 
 ## License
 
