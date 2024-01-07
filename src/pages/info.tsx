@@ -30,7 +30,7 @@ const PokemonInfoPage = () => {
           alt=""
         />
       )}
-      {!error && (
+      {!error && data?.id && (
         <div className="text-4xl">
           #{data?.id} {data?.name.toUpperCase()}
         </div>

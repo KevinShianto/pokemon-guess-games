@@ -1,0 +1,9 @@
+export const GENERATION_I = 151;
+export const GENERATION_II = 251;
+export const GENERATION_III = 386;
+export const GENERATION_IV = 494;
+export const GENERATION_V = 649;
+export const GENERATION_VI = 721;
+export const GENERATION_VII = 809;
+export const GENERATION_VIII = 905;
+export const GENERATION_IX = 1010; // exclude pecharunt for now

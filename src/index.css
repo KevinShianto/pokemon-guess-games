@@ -15,3 +15,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.squared-background {
+  background: conic-gradient(
+      from 90deg at 1px 1px,
+      black 90deg,
+      rgba(50, 205, 50, 0.05) 0
+    ) -2px -2px/70px 70px;
+}
