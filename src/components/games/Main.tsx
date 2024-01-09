@@ -1,11 +1,9 @@
 import { Pokemon } from "pokenode-ts";
 import React, { useEffect, useState } from "react";
-import {
-  getAbilitiesQuestionText,
-  getGenerationQuestionText,
-  getMovesQuestionText,
-  getTypeQuestionText,
-} from "../../utils/pokemon";
+import ElementHint from "./hints/Element";
+import MoveHint from "./hints/Move";
+import AbilityHint from "./hints/Ability";
+import GenerationHint from "./hints/Generation";
 
 export type MainGameComponentProps = {
   data: Pokemon;
@@ -38,53 +36,33 @@ const MainGameComponent = ({
   };
 
   useEffect(() => {
+    console.log("data", data);
+  }, [data]);
+
+  useEffect(() => {
     const nextHint = hints?.length + 1;
 
     if (
-      timeLeft <= timerPerHints * (numberOfHints - nextHint) &&
+      timeLeft <= timerPerHints * (numberOfHints - nextHint + 1) &&
       hints.length < numberOfHints
-    )
-      setHints((hints) => [...hints, getHints(nextHint)]);
+    ) {
+      // TODO: open the hint one by one
+    }
   }, [timeLeft]);
 
-  const getHints = (hint: number) => {
-    if (hint === 1) return getTypeQuestionText(types);
-    else if (hint === 2) return getMovesQuestionText(moves);
-    else if (hint === 3) return getAbilitiesQuestionText(abilities);
-    else if (hint === 4) return getGenerationQuestionText(data.id);
-  };
-
   return (
-    <div className="grid md:grid-cols-2 sm:grid-cols-1">
-      <div className="left-side-information">
-        <div className="text-3xl mb-4">Guest the Pokémon</div>
-        <div className="text-lg">
-          {hints &&
-            hints.map((hint, index) => (
-              <div>
-                {index + 1}. {hint}
-              </div>
-            ))}
-          {Array.from(
-            Array(Math.max(numberOfHints - 1 - hints.length, 0)).keys()
-          ).map((n, index) => (
-            <div>
-              {progress(
-                index == 0
-                  ? Math.round(
-                      ((timeElapsed % timerPerHints) / timerPerHints) * 100
-                    )
-                  : 0
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="right-side-information">
+    <div className="">
+      <div className="text-3xl mb-4">Guest the Pokémon</div>
+      <div className="left-side-information grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 h-32 gap-y-6 gap-x-4">
+        {/* 1st hint */}
         {/* 5th hint: silhoutte */}
         {/* <div>time per hints: {timerPerHints}</div>
         <div>time left: {timeLeft}</div>
         <div>time elapsed: {timeElapsed}</div> */}
+        <ElementHint elements={types} />
+        <MoveHint moves={moves} />
+        <AbilityHint abilities={abilities} />
+        <GenerationHint id={data.id} />
         {sprites.other?.["official-artwork"].front_default &&
           hints.length >= 4 && (
             <img

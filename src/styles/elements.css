@@ -1,0 +1,84 @@
+:root {
+  --element-url: url("/public/images/types/normal.png");
+  --element-size: 48px;
+}
+
+.elements-normal {
+  --element-url: url("/public/images/types/normal.png");
+}
+
+.elements-flying {
+  --element-url: url("/public/images/types/flying.png");
+}
+
+.elements-fighting {
+  --element-url: url("/public/images/types/fighting.png");
+}
+
+.elements-poison {
+  --element-url: url("/public/images/types/poison.png");
+}
+
+.elements-ground {
+  --element-url: url("/public/images/types/ground.png");
+}
+
+.elements-rock {
+  --element-url: url("/public/images/types/rock.png");
+}
+
+.elements-bug {
+  --element-url: url("/public/images/types/bug.png");
+}
+
+.elements-ghost {
+  --element-url: url("/public/images/types/ghost.png");
+}
+
+.elements-steel {
+  --element-url: url("/public/images/types/steel.png");
+}
+
+.elements-fire {
+  --element-url: url("/public/images/types/fire.png");
+}
+
+.elements-water {
+  --element-url: url("/public/images/types/water.png");
+}
+
+.elements-grass {
+  --element-url: url("/public/images/types/grass.png");
+}
+
+.elements-electric {
+  --element-url: url("/public/images/types/electric.png");
+}
+
+.elements-psychic {
+  --element-url: url("/public/images/types/psychic.png");
+}
+
+.elements-ice {
+  --element-url: url("/public/images/types/ice.png");
+}
+
+.elements-dragon {
+  --element-url: url("/public/images/types/dragon.png");
+}
+
+.elements-dark {
+  --element-url: url("/public/images/types/dark.png");
+}
+
+.elements-fairy {
+  --element-url: url("/public/images/types/fairy.png");
+}
+
+.elements {
+  background-size: cover;
+  width: var(--element-size);
+  height: var(--element-size);
+  background-image: var(--element-url);
+  background-repeat: no-repeat;
+}

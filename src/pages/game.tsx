@@ -16,6 +16,8 @@ const GamePage = () => {
   const [timeLeft, setTimeLeft] = React.useState(totalTime);
   const timerDelay = 10;
 
+  const dexNumber = randomNumberByRange(generation);
+
   const timer = useTimer(
     {
       delay: timerDelay,
@@ -30,9 +32,14 @@ const GamePage = () => {
   );
 
   useEffect(() => {
-    const dexNumber = randomNumberByRange(generation);
+    if (!data) {
+      getPokemon();
+    }
+  }, []);
+
+  const getPokemon = async () => {
     setLoading(true);
-    api
+    await api
       .getPokemonById(dexNumber)
       .then((response) => {
         setData(response);
@@ -40,7 +47,7 @@ const GamePage = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  };
 
   useEffect(() => {
     timer.start();
@@ -50,7 +57,11 @@ const GamePage = () => {
 
   if (data)
     return (
-      <div className="py-16 px-60">
+      <div className="lg:py-16 lg:px-40 md:p-12 p-4">
+        {/* Header games */}
+        <div className="w-full flex justify-center">
+          Time left: {Math.round(timeLeft / 1000)}s
+        </div>
         <MainGameComponent
           data={data}
           timeLeft={timeLeft}
