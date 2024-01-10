@@ -1,4 +1,5 @@
 import {
+  GENERATION_I,
   GENERATION_II,
   GENERATION_III,
   GENERATION_IV,
@@ -22,13 +23,13 @@ export const getPokemonGeneration = (number: number) => {
 };
 
 export const getPokemonGenerationName = (number: number) => {
-  if (number > GENERATION_IX) return "Paldea";
-  else if (number > GENERATION_VIII) return "Galar";
-  else if (number > GENERATION_VII) return "Alola";
-  else if (number > GENERATION_VI) return "Kalos";
-  else if (number > GENERATION_V) return "Unova";
-  else if (number > GENERATION_IV) return "Sinnoh";
-  else if (number > GENERATION_III) return "Hoenn";
-  else if (number > GENERATION_II) return "Johto";
+  if (number > GENERATION_VIII) return "Paldea";
+  else if (number > GENERATION_VII) return "Galar";
+  else if (number > GENERATION_VI) return "Alola";
+  else if (number > GENERATION_V) return "Kalos";
+  else if (number > GENERATION_IV) return "Unova";
+  else if (number > GENERATION_III) return "Sinnoh";
+  else if (number > GENERATION_II) return "Hoenn";
+  else if (number > GENERATION_I) return "Johto";
   else return "Kanto";
 };

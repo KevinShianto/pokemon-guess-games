@@ -7,7 +7,7 @@ export type ElementProps = {
 
 const ElementHint = ({ elements }: ElementProps) => {
   return (
-    <div className="flex flex-col justify-center w-full h-full items-center gap-3 bg-base-200 p-4 rounded-lg">
+    <div className="flex flex-col justify-center w-full h-full items-center gap-3 bg-base-200 p-4 rounded-lg text-center">
       <div className="text-xl font-medium">
         Has {elements.length > 1 ? "these" : "this"} type
         {elements.length > 1 && "s"}

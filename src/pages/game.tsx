@@ -14,6 +14,8 @@ const GamePage = () => {
   const [data, setData] = useState<Pokemon>();
   const [loading, setLoading] = useState<boolean>(false);
   const [timeLeft, setTimeLeft] = React.useState(totalTime);
+  const [result, setResult] = useState<boolean>();
+
   const timerDelay = 10;
 
   const dexNumber = randomNumberByRange(generation);
@@ -27,6 +29,7 @@ const GamePage = () => {
       if (timeLeft <= 0) {
         setTimeLeft(0);
         timer.stop();
+        if (result === undefined) setResult(false);
       }
     }
   );
@@ -36,6 +39,11 @@ const GamePage = () => {
       getPokemon();
     }
   }, []);
+
+  const onFinish = (answer: string) => {
+    setResult(true);
+    timer.stop();
+  };
 
   const getPokemon = async () => {
     setLoading(true);
@@ -57,15 +65,12 @@ const GamePage = () => {
 
   if (data)
     return (
-      <div className="lg:py-16 lg:px-40 md:p-12 p-4">
-        {/* Header games */}
-        <div className="w-full flex justify-center">
-          Time left: {Math.round(timeLeft / 1000)}s
-        </div>
+      <div className="lg:py-10 lg:px-40 md:p-12 p-4">
         <MainGameComponent
           data={data}
           timeLeft={timeLeft}
           totalTimes={totalTime}
+          onFinish={onFinish}
         />
       </div>
     );
