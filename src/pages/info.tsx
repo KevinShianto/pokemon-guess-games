@@ -1,6 +1,7 @@
 import { Pokemon, PokemonClient } from "pokenode-ts";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "../components/loading";
 
 const PokemonInfoPage = () => {
   const api = new PokemonClient();
@@ -9,8 +10,11 @@ const PokemonInfoPage = () => {
   const { pokemonName } = useParams();
   const [error, setError] = useState("");
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    if (pokemonName)
+    if (pokemonName) {
+      setLoading(true);
       api
         .getPokemonByName(pokemonName)
         .then((res) => {
@@ -19,24 +23,32 @@ const PokemonInfoPage = () => {
         })
         .catch((err) => {
           setError(err);
+        })
+        .finally(() => {
+          setLoading(false);
         });
+    }
   }, [pokemonName]);
 
+  if (loading) return <Loading></Loading>;
+
   return (
-    <center>
-      {!error && data?.sprites.other?.["official-artwork"].front_default && (
-        <img
-          src={data?.sprites.other?.["official-artwork"].front_default}
-          alt=""
-        />
-      )}
-      {!error && data?.id && (
-        <div className="text-4xl">
-          #{data?.id} {data?.name.toUpperCase()}
-        </div>
-      )}
+    <div className="flex flex-col px-16 py-16">
+      <div className="justify-center w-full">
+        {!error && data?.id && (
+          <div className="text-4xl">
+            #{data?.id} {data?.name.toUpperCase()}
+          </div>
+        )}
+        {!error && data?.sprites.other?.["official-artwork"].front_default && (
+          <img
+            src={data?.sprites.other?.["official-artwork"].front_default}
+            alt=""
+          />
+        )}
+      </div>
       {error && <>Error</>}
-    </center>
+    </div>
   );
 };
 

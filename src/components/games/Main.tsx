@@ -11,7 +11,7 @@ export type MainGameComponentProps = {
   data: Pokemon;
   timeLeft: number;
   totalTimes: number;
-  onFinish: (answer: string) => void;
+  onFinish: (win: boolean) => void;
 };
 
 const numberOfHints = 5;
@@ -36,7 +36,7 @@ const MainGameComponent = ({
     if (val.toLowerCase() === name.toLowerCase()) {
       // correct answer
       setIsFalse(false);
-      onFinish(name);
+      onFinish(true);
       setIsWinning(true);
     } else {
       setIsFalse(true);

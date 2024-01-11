@@ -5,8 +5,11 @@ import { randomNumberByRange } from "../utils/random";
 import MainGameComponent from "../components/games/Main";
 import { GENERATION_VIII } from "../utils/constants";
 import { useTimer } from "react-use-precision-timer";
+import ReactConfetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
 
 const GamePage = () => {
+  const { width, height } = useWindowSize();
   const totalTime = 60000; // in milliseconds
 
   const generation = GENERATION_VIII;
@@ -18,7 +21,7 @@ const GamePage = () => {
 
   const timerDelay = 10;
 
-  const dexNumber = randomNumberByRange(generation);
+  let dexNumber = randomNumberByRange(generation);
 
   const timer = useTimer(
     {
@@ -30,6 +33,9 @@ const GamePage = () => {
         setTimeLeft(0);
         timer.stop();
         if (result === undefined) setResult(false);
+        (
+          document.getElementById("result-modal") as HTMLDialogElement
+        )?.showModal();
       }
     }
   );
@@ -40,9 +46,14 @@ const GamePage = () => {
     }
   }, []);
 
-  const onFinish = (answer: string) => {
-    setResult(true);
+  const onFinish = (win: boolean) => {
+    setResult(win);
     timer.stop();
+    if (win) {
+      (
+        document.getElementById("result-modal") as HTMLDialogElement
+      )?.showModal();
+    }
   };
 
   const getPokemon = async () => {
@@ -61,6 +72,14 @@ const GamePage = () => {
     timer.start();
   }, [timer]);
 
+  const resetGame = () => {
+    setTimeLeft(totalTime);
+    dexNumber = randomNumberByRange(generation);
+    setResult(undefined);
+    timer.start();
+    getPokemon();
+  };
+
   if (loading) return <Loading></Loading>;
 
   if (data)
@@ -72,6 +91,36 @@ const GamePage = () => {
           totalTimes={totalTime}
           onFinish={onFinish}
         />
+
+        {/* Game result */}
+        {result && <ReactConfetti width={width} height={height} />}
+        <dialog id="result-modal" className="modal text-center">
+          <div className="modal-box">
+            <div className="text-3xl font-bold">
+              {result ? "Congratulations" : "Shoot"}
+            </div>
+            <div className="mt-2">
+              {result ? (
+                <>You guessed it correct!</>
+              ) : (
+                <>
+                  Time's up buddy! The correct answer is{" "}
+                  <span className="font-bold">{data.name}</span>
+                </>
+              )}
+            </div>
+            <div className="modal-action justify-center">
+              <form method="dialog" className="flex gap-4">
+                <a href={`/info/${data.id}`} className="btn btn-ghost">
+                  See pokemon info
+                </a>
+                <button onClick={resetGame} className="btn">
+                  Play again
+                </button>
+              </form>
+            </div>
+          </div>
+        </dialog>
       </div>
     );
 

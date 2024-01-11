@@ -14,9 +14,11 @@
     "axios-cache-interceptor": "^1.4.1",
     "pokenode-ts": "^1.20.0",
     "react": "^18.2.0",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
+    "react-use": "^17.4.2",
     "react-use-precision-timer": "^3.4.5",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
