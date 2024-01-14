@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pokemon-guess-games/static/css/main.4b9bd5c0.css",
+    "main.js": "/pokemon-guess-games/static/js/main.ee59695e.js",
+    "static/js/787.380012db.chunk.js": "/pokemon-guess-games/static/js/787.380012db.chunk.js",
+    "index.html": "/pokemon-guess-games/index.html",
+    "main.4b9bd5c0.css.map": "/pokemon-guess-games/static/css/main.4b9bd5c0.css.map",
+    "main.ee59695e.js.map": "/pokemon-guess-games/static/js/main.ee59695e.js.map",
+    "787.380012db.chunk.js.map": "/pokemon-guess-games/static/js/787.380012db.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4b9bd5c0.css",
+    "static/js/main.ee59695e.js"
+  ]
+}
