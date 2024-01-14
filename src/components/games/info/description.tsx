@@ -8,7 +8,7 @@ export type DescriptionProps = {
 const Description = ({ species }: DescriptionProps) => {
   if (!species) return <>Loading...</>;
   return (
-    <div className="m-4 text-xl">
+    <div className="m-5 text-xl">
       {
         species.flavor_text_entries.find((desc) => desc.language.name === "en")
           ?.flavor_text
